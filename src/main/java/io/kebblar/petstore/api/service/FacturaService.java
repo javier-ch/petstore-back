@@ -3,6 +3,7 @@ package io.kebblar.petstore.api.service;
 import java.util.List;
 
 import io.kebblar.petstore.api.exceptions.BusinessException;
+import io.kebblar.petstore.api.model.Criterio;
 import io.kebblar.petstore.api.model.Factura;
 
 public interface FacturaService {
@@ -14,4 +15,6 @@ public interface FacturaService {
 	 * @throws BusinessException Se dispara en caso de alun error en el proceso
 	 */
 	List<Factura> getAll() throws BusinessException;
+	
+	List<Integer> getPestByCriteria(List<Criterio> criterios)throws BusinessException;
 }
