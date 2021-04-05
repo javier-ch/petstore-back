@@ -1,14 +1,16 @@
 package io.kebblar.petstore.api.service;
 
-//import java.util.ArrayList;
-//import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+
 import io.kebblar.petstore.api.exceptions.BusinessException;
 import io.kebblar.petstore.api.mapper.FacturaMapper;
+import io.kebblar.petstore.api.model.Criterio;
 import io.kebblar.petstore.api.model.Factura;
+import io.kebblar.petstore.api.support.SQLBuilder;
 
 @Service
 public class FacturaserviceImpl implements FacturaService{
@@ -31,6 +33,12 @@ public class FacturaserviceImpl implements FacturaService{
 		}catch (Exception e) {
 			throw new BusinessException("texto adecuado...");
 		}
+	}
+
+	@Override
+	public List<Integer> getPestByCriteria(List<Criterio> criterios) throws BusinessException {
+		SQLBuilder sqlBuilder = new SQLBuilder(criterios);
+		return facturaMapper.getPetsByCriteria(sqlBuilder.produceMap());
 	}
 
 }

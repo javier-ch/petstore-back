@@ -7,10 +7,13 @@ import java.util.Map;
 import javax.servlet.ServletException;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.kebblar.petstore.api.exceptions.BusinessException;
+import io.kebblar.petstore.api.model.Criterio;
 import io.kebblar.petstore.api.model.Factura;
 import io.kebblar.petstore.api.service.FacturaService;
 
@@ -45,4 +48,8 @@ public class EjemploRest {
         return mapa;
     }
 
+    @PostMapping(path = "/criterios.json", produces = "application/json; charset=utf-8")
+    public List<Integer> getPestByCriterio(@RequestBody List<Criterio> criterios) throws BusinessException {
+        return facturaService.getPestByCriteria(criterios);
+    }
 }
